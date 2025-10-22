@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.generic import View
 from User.models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth import login,logout
 
 from User.froms import UserRegistrationForm
 # Create your views here.
@@ -35,6 +37,37 @@ class RegisterView(View):
 
         form = UserRegistrationForm()
 
-        return render(request,"signin.html",{'form':form})
+        return redirect('signin')
+
+
+class LoginView(View):
+
+    def get(self,request):
+
+        return render(request,"login.html")
+    
+    def post(self,request):
+
+        username = request.POST.get('username')
+
+        password = request.POST.get('password')
+
+        user = authenticate(request,username = username,password = password)
+
+        if user:
+
+            login(request,user)
+
+            return redirect("signin")
+        
+        return redirect("login.html")
+    
+class logOut(View):
+
+    def get(self,request):
+
+        logout(request)
+
+        return redirect("login")
 
 

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Tracker - Signup</title>
+    <title>Expense Tracker - Login</title>
     <style>
+        /* Reset some default styles */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -17,24 +18,24 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(to right, #e0f7fa, #b2ebf2); /* calm background */
+            background: linear-gradient(to right, #e0f7fa, #b2ebf2);
         }
 
-        .signup-container {
-            background: #ffffff;
+        .login-container {
+            background: #fff;
             padding: 40px 30px;
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 350px;
             text-align: center;
         }
 
-        .signup-container h1 {
+        .login-container h2 {
             margin-bottom: 25px;
             color: #333;
         }
 
-        .signup-container label {
+        .login-container label {
             display: block;
             text-align: left;
             margin-bottom: 5px;
@@ -42,7 +43,7 @@
             color: #555;
         }
 
-        .signup-container input {
+        .login-container input {
             width: 100%;
             padding: 10px 12px;
             margin-bottom: 20px;
@@ -52,30 +53,30 @@
             transition: border-color 0.3s;
         }
 
-        .signup-container input:focus {
-            border-color: #80deea;
+        .login-container input:focus {
+            border-color: #2575fc;
             outline: none;
         }
 
-        .signup-container button {
+        .login-container button {
             width: 100%;
             padding: 12px;
             border: none;
             border-radius: 8px;
-            background: #80deea;
+            background: #2575fc;
             color: #fff;
             font-size: 16px;
             cursor: pointer;
             transition: background 0.3s;
         }
 
-        .signup-container button:hover {
-            background: #4dd0e1;
+        .login-container button:hover {
+            background: #6a11cb;
         }
 
-        /* Optional: responsive tweaks */
-        @media(max-width: 450px) {
-            .signup-container {
+        /* Optional: small responsive tweak */
+        @media(max-width: 400px) {
+            .login-container {
                 width: 90%;
                 padding: 30px 20px;
             }
@@ -83,12 +84,17 @@
     </style>
 </head>
 <body>
-    <div class="signup-container">
-        <h1>Signup</h1>
+    <div class="login-container">
+        <h2>Expense Tracker Login</h2>
         <form action="" method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Signup</button>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="Enter your username" required>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password" required>
+
+            <button type="submit">Login</button>
         </form>
     </div>
 </body>
