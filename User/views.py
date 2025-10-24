@@ -60,7 +60,7 @@ class LoginView(View):
 
             return redirect("signin")
         
-        return redirect("login.html")
+        return redirect("login")
     
 class logOut(View):
 
