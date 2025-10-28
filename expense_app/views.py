@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.generic import View
 from expense_app.forms import ExpenseForm
-
+from expense_app.models import Expense
 
 class Add_Expense_view(View):
 
@@ -32,3 +32,11 @@ class Add_Expense_view(View):
         return render(request,"expense_add.html",{'form':form})
 
 
+class ExpenseListView(View):
+
+    def get(self,request):
+
+        expenses = Expense.objects.filter(user = request.user)
+
+        return render(request,"expense_list.html",{'expenses':expenses})
+                                            
