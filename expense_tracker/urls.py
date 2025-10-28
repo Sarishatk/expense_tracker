@@ -25,6 +25,6 @@ urlpatterns = [
     path('login/',LoginView.as_view(),name= 'login'),
     path('logout/',logOut.as_view(),name = "logout"),
     path('expview/',Add_Expense_view.as_view()),
-    path('explist/',ExpenseListView.as_view()),
+    path('explist/',ExpenseListView.as_view(),name ='expense_list'),
 
 ]
