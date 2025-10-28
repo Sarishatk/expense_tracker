@@ -17,12 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from User.views import RegisterView,LoginView,logOut
-from expense_app.views import Add_Expense_view
+from expense_app.views import Add_Expense_view,ExpenseListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signin/',RegisterView.as_view(),name = 'signin'),
     path('login/',LoginView.as_view(),name= 'login'),
     path('logout/',logOut.as_view(),name = "logout"),
-    path('expview/',Add_Expense_view.as_view())
+    path('expview/',Add_Expense_view.as_view()),
+    path('explist/',ExpenseListView.as_view()),
+
 ]
