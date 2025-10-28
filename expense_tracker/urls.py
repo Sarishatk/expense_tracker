@@ -26,6 +26,6 @@ urlpatterns = [
     path('logout/',logOut.as_view(),name = "logout"),
     path('expview/',Add_Expense_view.as_view()),
     path('explist/',ExpenseListView.as_view(),name ='expense_list'),
-    path('exp_update/',ExpenseUpdateView.as_view()),
+    path('exp_update/<int:pk>',ExpenseUpdateView.as_view()),
 
 ]
