@@ -40,3 +40,17 @@ class ExpenseListView(View):
 
         return render(request,"expense_list.html",{'expenses':expenses})
                                             
+class ExpenseUpdateView(View):
+
+    def get(self, request, **kwargs):
+
+        id = kwargs.get('pk')
+
+        Expenses = Expense.objects.get(user = request.user, id = id)
+
+        ExpenseForm(isinstance=Expenses)
+
+        return render(request,'update_exp.html',{'Expenses':Expenses})
+
+
+        i
