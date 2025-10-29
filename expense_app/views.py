@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
 # Create your views here.
 from django.views.generic import View
 from expense_app.forms import ExpenseForm
 from expense_app.models import Expense
+from django.shortcuts import get_object_or_404
 
 class Add_Expense_view(View):
 
@@ -53,4 +54,14 @@ class ExpenseUpdateView(View):
         return render(request,'update_exp.html',{'form':form})
 
 
-        
+class ExpenseDelete(View):
+
+    def get(self,request,**kwargs):
+
+        id = kwargs.get("pk")
+
+        expense = get_object_or_404(Expense,id=id,user=request.user)
+
+        expense.delete()
+
+        return redirect("home")

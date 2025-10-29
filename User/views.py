@@ -59,7 +59,7 @@ class LoginView(View):
 
             login(request,user)
 
-            return redirect("expense_list")
+            return redirect("home")
         
         return redirect("login")
     
