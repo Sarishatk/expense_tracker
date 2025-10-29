@@ -3,6 +3,7 @@ from django.views.generic import View
 from User.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login,logout
+from expense_app.models import Expense
 
 from User.froms import UserRegistrationForm
 # Create your views here.
@@ -74,6 +75,8 @@ class BaseView(View):
 
     def get(self,request):
 
-        return render(request,"home.html")
+        expenses = Expense.objects.filter(user=request.user)
+
+        return render(request,"home.html",{'expenses':expenses})
 
 
