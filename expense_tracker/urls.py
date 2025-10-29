@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from User.views import RegisterView,LoginView,logOut
+from User.views import RegisterView,LoginView,logOut,BaseView
 from expense_app.views import Add_Expense_view,ExpenseListView,ExpenseUpdateView
 
 urlpatterns = [
@@ -27,5 +27,6 @@ urlpatterns = [
     path('expview/',Add_Expense_view.as_view()),
     path('explist/',ExpenseListView.as_view(),name ='expense_list'),
     path('exp_update/<int:pk>',ExpenseUpdateView.as_view()),
+    path("",BaseView.as_view(),name = 'home')
 
 ]
