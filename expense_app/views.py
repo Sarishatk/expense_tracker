@@ -65,6 +65,10 @@ class ExpenseUpdateView(UpdateView):
 
     success_url = reverse_lazy("home")
 
+    def get_queryset(self,request):
+        
+        return Expense.objects.filter(user = request.user)
+
 
 
 class ExpenseDelete(View):
