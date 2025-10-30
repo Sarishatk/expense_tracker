@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
 
 # Create your views here.
-from django.views.generic import View
+from django.views.generic import View,UpdateView
 from expense_app.forms import ExpenseForm
 from expense_app.models import Expense
 from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
 
 class Add_Expense_view(View):
 
@@ -41,17 +42,29 @@ class ExpenseListView(View):
 
         return render(request,"expense_list.html",{'expenses':expenses})
                                             
-class ExpenseUpdateView(View):
+# class ExpenseUpdateView(View):
 
-    def get(self, request, **kwargs):
+#     def get(self, request, **kwargs):
 
-        id = kwargs.get('pk')
+#         id = kwargs.get('pk')
 
-        Expenses = Expense.objects.get(user = request.user, id = id)
+#         Expenses = Expense.objects.get(user = request.user, id = id)
 
-        form = ExpenseForm(instance=Expenses)
+#         form = ExpenseForm(instance=Expenses)
 
-        return render(request,'update_exp.html',{'form':form})
+#         return render(request,'update_exp.html',{'form':form})
+    
+
+class ExpenseUpdateView(UpdateView):
+
+    model = Expense
+
+    form_class = ExpenseForm
+
+    template_name = "expense_update.html"
+
+    success_url = reverse_lazy("home")
+
 
 
 class ExpenseDelete(View):
