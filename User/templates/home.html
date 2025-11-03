@@ -69,8 +69,8 @@
     <!-- Add Expense Button -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h4 class="fw-semibold">Recent Transactions</h4>
-      <form action="">
-        <input type="text" ><span><button>Search</button></span>
+      <form action="{% url 'expense_search' %}">
+        <input type="text" name="q" ><span><button>Search</button></span>
       </form>
       <a href="{% url 'expense_add' %}" class="btn btn-add">
        + Add new

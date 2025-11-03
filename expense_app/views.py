@@ -6,6 +6,7 @@ from expense_app.forms import ExpenseForm
 from expense_app.models import Expense
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.db.models import Q
 
 class Add_Expense_view(View):
 
@@ -86,4 +87,21 @@ class ExpenseDelete(View):
 
 class ExpenseSearchView(View):
 
-    
+    template_name = 'expense_serach.html'
+
+    def get(self, request):
+
+        query = request.GET.get('q')
+
+        # filtering all expenses of logged user
+
+        expenses = Expense.objects.filter(user= request.user)
+        
+        # filtering using the given query from the filtered expenses above
+
+        if query:
+
+          expenses = expenses.filter(Q(title__icontains=query) | Q(category__icontains=query))
+ 
+        return render(request,self.template_name,{'expenses':expenses})
+ 
