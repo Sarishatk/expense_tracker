@@ -82,3 +82,8 @@ class ExpenseDelete(View):
         expense.delete()
 
         return redirect("home")
+    
+
+class ExpenseSearchView(View):
+
+    
