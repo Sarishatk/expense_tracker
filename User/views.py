@@ -77,6 +77,12 @@ class BaseView(View):
 
         expenses = Expense.objects.filter(user=request.user)
 
-        return render(request,"home.html",{'expenses':expenses})
+        total_expenses = 0
+
+        for i in expenses:
+
+            total_expenses+= i.amount
+
+            return render(request, "home.html", {'expenses': expenses, 'total_expenses': total_expenses})
 
 
