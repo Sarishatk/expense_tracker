@@ -71,18 +71,16 @@ class logOut(View):
 
         return redirect("login")
     
+from django.views import View
+from django.shortcuts import render
+from expense_app.models import Expense
+
 class BaseView(View):
-
-    def get(self,request):
-
-        expenses = Expense.objects.filter(user=request.user)
-
-        total_expenses = 0
-
-        for i in expenses:
-
-            total_expenses+= i.amount
-
-            return render(request, "home.html", {'expenses': expenses, 'total_expenses': total_expenses})
-
-
+    def get(self, request):
+        if request.user.is_authenticated:
+            expenses = Expense.objects.filter(user=request.user)
+            total_expenses = sum(i.amount for i in expenses)
+        else:
+            expenses = []
+            total_expenses = 0
+        return render(request, "home.html", {'expenses': expenses, 'total_expenses': total_expenses})
